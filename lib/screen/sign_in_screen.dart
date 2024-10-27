@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -8,54 +9,64 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  bool _isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true, // Đặt phần thân kéo dài ra phía sau AppBar
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // AppBar trong suốt
-        elevation: 0, // Loại bỏ bóng của AppBar
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         automaticallyImplyLeading: false,
         centerTitle: true,
       ),
       body: Stack(
         children: [
-          // Ảnh nền cho toàn bộ màn hình
+          // Background image for the entire screen
           Positioned.fill(
             child: Image.asset(
-              'assets/hustc1.jpg', // Thay 'hustc1.jpg' bằng đường dẫn tới ảnh của bạn
-              fit: BoxFit.cover, // Điều chỉnh để ảnh bao phủ toàn bộ màn hình
+              'assets/hustc1.jpg',
+              fit: BoxFit.cover,
             ),
           ),
-          // Khung trong suốt mở rộng gần hết màn hình
           Center(
             child: Stack(
-              clipBehavior: Clip.none, // Cho phép logo vượt ra khỏi Container
+              clipBehavior: Clip.none,
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  padding: const EdgeInsets.fromLTRB(20, 60, 20, 20), // Thêm khoảng trống trên cho logo
+                  padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5), // Màu đen trong suốt
-                    borderRadius: BorderRadius.circular(15), // Bo góc khung
+                    color: Colors.black.withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 40), // Khoảng trống dưới logo
+                      const SizedBox(height: 25),
                       const Text(
                         "Đăng nhập",
-                        style: TextStyle(color: Colors.white, fontSize: 24),
+                        style: TextStyle(
+                            color: Color(0xFFD0EB83),
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 20),
-                      // Các trường nhập liệu
                       const TextField(
                         decoration: InputDecoration(
-                          hintText: "Email",
-                          hintStyle: TextStyle(color: Colors.white54),
+                          labelText: "Email",
+                          labelStyle: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: "Email của bạn",
+                          hintStyle: TextStyle(color: Colors.grey),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
                           ),
@@ -66,34 +77,194 @@ class _SignInScreenState extends State<SignInScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                       const SizedBox(height: 20),
-                      const TextField(
-                        obscureText: true,
+                      TextField(
+                        obscureText: _isObscure,
                         decoration: InputDecoration(
-                          hintText: "Mật khẩu",
-                          hintStyle: TextStyle(color: Colors.white54),
-                          enabledBorder: UnderlineInputBorder(
+                          labelText: "Mật khẩu",
+                          labelStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: "Mật khẩu của bạn",
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
                           ),
                         ),
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF0000),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 110, vertical: 15),
+                          textStyle: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        child: const Text(
+                          "Đăng nhập",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        "Hoặc sử dụng",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Expanded Facebook Button
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Your Facebook button action here
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF4267B2),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 15),
+                              ),
+                              child: const Text(
+                                'Facebook',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 20), // Space between buttons
+                          // Expanded Gmail Button
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Your Gmail button action here
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFFF5722),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: const BorderSide(
+                                      color: Colors.white, width: 2),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 15),
+                              ),
+                              child: const Text(
+                                'Gmail',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Forgot password text with two colors
+                          RichText(
+                            text: TextSpan(
+                              text: "Bạn quên mật khẩu? ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "Khôi phục mật khẩu",
+                                  style: TextStyle(
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      // Handle password recovery
+                                    },
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            indent: 50,
+                            endIndent: 50,
+                          ),
+                          const SizedBox(height: 10),
+                          // Sign up text with two colors
+                          RichText(
+                            text: TextSpan(
+                              text: "Bạn chưa có tài khoản? ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "Đăng ký ngay",
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      // Handle sign up
+                                    },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-                // Logo đè lên viền của Container
                 Positioned(
-                  top: -40, // Vị trí trên Container (âm để nó nhô ra khỏi viền)
+                  top: -40,
                   left: (MediaQuery.of(context).size.width * 0.9) / 2 - 60,
                   child: Container(
-                    width: 120, // Kích thước logo nhỏ hơn
+                    width: 120,
                     height: 120,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.rectangle,
                     ),
-                    padding: const EdgeInsets.all(5), // Đệm logo vào bên trong
+                    padding: const EdgeInsets.all(5),
                     child: Image.asset(
                       "assets/logohust.png",
                       fit: BoxFit.contain,
