@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
           // Background image for the entire screen
           Positioned.fill(
             child: Image.asset(
-              'assets/hustc1.jpg',
+              'assets/login_bg.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -41,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.8),
+                    color: Colors.black.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(
@@ -244,7 +244,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      // Handle sign up
+                                      print("đăng ký");
                                     },
                                 ),
                               ],
