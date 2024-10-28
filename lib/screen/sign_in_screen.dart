@@ -27,10 +27,13 @@ class _SignInScreenState extends State<SignInScreen> {
         children: [
           // Background image for the entire screen
           Positioned.fill(
-            child: Image.asset(
-              'assets/login_bg.jpg',
-              fit: BoxFit.cover,
+            child: Container(
+              color: Colors.blue[50],
             ),
+            // child: Image.asset(
+            //   'assets/login_bg.jpg',
+            //   fit: BoxFit.cover,
+            // ),
           ),
           Center(
             child: Stack(
