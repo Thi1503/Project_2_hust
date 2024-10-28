@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project_2_hust/screen/login_screen.dart';
+import 'package:project_2_hust/screen/register_screen.dart';
 import 'package:project_2_hust/screen/sign_in_screen.dart';
 
 void main() {

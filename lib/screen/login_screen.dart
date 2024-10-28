@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_2_hust/screen/forgot_password_screen.dart';
+import 'package:project_2_hust/screen/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -91,7 +93,10 @@ class _LoginScreenState extends State<LoginScreen> {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {
-                  // Forgot password logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+                  );
                 },
                 child: const Text(
                   'Quên mật khẩu ?',
@@ -150,7 +155,10 @@ class _LoginScreenState extends State<LoginScreen> {
             // Register Button
             ElevatedButton.icon(
               onPressed: () {
-                // Register functionality here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
